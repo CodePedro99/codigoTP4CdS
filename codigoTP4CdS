@@ -1,0 +1,40 @@
+def main():
+    # Inicialización de las variables
+    notas = [0] * 6
+    suma = 0
+
+    # Solicita las notas de los 6 parciales
+    for i in range(6):
+        try:
+            # Solicita la nota de cada parcial
+            notas[i] = float(input(f"Ingrese la nota del parcial {i+1}: "))
+            
+            # Valida que la nota esté en el rango entre 0 y 10 y sea un número
+            if notas[i] < 0 or notas[i] > 10:
+                print("Error: La nota ingresada debe estar entre 0 y 10.")
+                return  
+        except ValueError:
+            print("Error: Entrada no válida. Por favor ingrese un número.")
+            return  
+    
+        suma += notas[i]  # Suma la nota al total
+
+    # Calcula el promedio
+    promedio = suma / 6
+
+    # Evalúa y define el resultado según el promedio
+    if promedio < 5:
+        print("ALUMNO REPROBADO")
+    else:
+        if promedio > 7:
+            # Verifica si alguna nota es menor a 7
+            if all(nota >= 7 for nota in notas):
+                print("ALUMNO PROMOCIONADO")
+            else:
+                print("ALUMNO REGULAR")
+        else:
+            print("ALUMNO REGULAR")
+
+
+if __name__ == "__main__":
+    main()
